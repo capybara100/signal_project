@@ -33,7 +33,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.5.6</version> <!-- Use the version that's compatible with your Spring Boot version -->
+                <version>22.0.1</version> <!-- Use the version that's compatible with your Spring Boot version -->
                 <executions>
                     <execution>
                         <goals>

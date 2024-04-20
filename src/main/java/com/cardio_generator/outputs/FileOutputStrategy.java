@@ -6,13 +6,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.concurrent.ConcurrentHashMap;
-//Class name changed to fit UpperCamelCase convention
+// Class name changed to fit UpperCamelCase convention
 public class FileOutputStrategy implements OutputStrategy {
 
     private String BaseDirectory;
 
     public final ConcurrentHashMap<String, String> file_map = new ConcurrentHashMap<>();
-
+    // Changed the constructor to have the same name as the class
     public FileOutputStrategy(String baseDirectory) {
 
         this.BaseDirectory = baseDirectory;

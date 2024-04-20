@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.concurrent.ConcurrentHashMap;
-
+//Class name changed to fit UpperCamelCase convention
 public class FileOutputStrategy implements OutputStrategy {
 
     private String BaseDirectory;

@@ -6,18 +6,30 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.concurrent.ConcurrentHashMap;
-// Class name changed to fit UpperCamelCase convention
-public class FileOutputStrategy implements OutputStrategy {
+/**
+* The class give an output strategy for the health datat to the file
+*/     
+public class FileOutputStrategy implements OutputStrategy { // Class name changed to fit UpperCamelCase convention
     // Changed field name to fit lowerCamelCase as it should not have underscore and should be in lowerCamelCase
     private String baseDirectory;
-    // Changed file_map to fit naming conevention 
+    // Changed file_map to fit naming convention 
     public final ConcurrentHashMap<String, String> fileMap = new ConcurrentHashMap<>();
-    // Changed the constructor to have the same name as the class
-    public FileOutputStrategy(String baseDirectory) {
+    /**
+    * The constructor allows users to specify the base directory for the output files
+    * @param baseDirectory which is a String that specifies where the files will be kept
+    */  
+    public FileOutputStrategy(String baseDirectory) { // Changed the constructor to have the same name as the class
         // Changed field name to fit lowerCamelCase
         this.baseDirectory = baseDirectory;
     }
-
+    
+    /** 
+    * The ouput method outputs data to a file for a patient
+    * @param patientId is a int that identifices the patient
+    * @param timestamp is a long that is the recorded time
+    * @param label is a String that labels the data
+    * @param data is a String that is the data given
+    */  
     @Override
     public void output(int patientId, long timestamp, String label, String data) {
         try {

@@ -1,0 +1,7 @@
+My rationale for the UML class diagram was to keep it simple and concise.
+There is five classes which are AlertGenerator, Alert, AlertManager, Patient and Threshold.
+It seemed wise to add Patient class and threshold as they are important class to inform the alert.
+The Alert class is dependant on the AlertGenerator without it it wouldn't exist. Just like how the 
+the Alertmanager is reliant on the Alert class that is why they have both composition relationships.
+The Threshold lets the Patient class know which are values a condintion should be to be considered worrisome.
+There can be many alerts made that is why the Alert class has a multiplicity of 0 and to many.

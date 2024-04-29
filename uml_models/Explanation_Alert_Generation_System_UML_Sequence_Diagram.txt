@@ -1,0 +1,8 @@
+The rationale for this Alert Generation System Sequence Diagram was to show a clear sequence diagram of the Alert Generation System lifecycle.
+I made the choice of having the actor be the medical staff that are ready to take action when needed. In the diagram we have the first message being the alertGenerator 
+checking condition of the patient for continuing trend when a threshold is exceeded. There is an alternative box for the two cases of the condition being a continuing trend or not.
+As you can imagine if it is a continuing trend then you get a return message that states such. Then we need the AlertGenerator to create an alert and send alert to the medical staff.
+The else condition is of course if it is not a contuining trend then that is all that needs to be done.
+The alert is resolved. We need the alert lifeline to start later than the other because we first need to check conditions before an alert can be made.
+Resolving the alert message is the last message made to help the patient's condition. AlertGenerator and datStorage lifelines both lifelines statr at the same point as they 
+both contribute to the first message that was made.

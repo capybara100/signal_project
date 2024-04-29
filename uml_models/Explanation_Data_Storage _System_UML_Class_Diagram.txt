@@ -1,0 +1,10 @@
+The rationale for this Data Storage system class diagram is to have an uncomplicated model of how the system works.
+There are three method shown in this diagram which includes PatientData, DataStorage and DataRetriver.
+PatientData and DataStorage show an aggregated relationship as they are not strongly depedent on each other.
+The PatientData class would still exist if the DataStorage did not remain. The DataRetriver class is dependant
+on the DataStorage class as that is where it gets it's data. The purpose of DataRetriver is to retrieve data that
+is exactly why it has such method to extract data of a patient. The DataStorage has an attribute for storage which has a private visibility
+as it wouldn't make sense to be accessed by any other class or sub-class. It also has methods to store data, retrieve data and delete unnecessary data.
+The PatientData class on the other hand has patientId, metrics and timestamp which all are as private visibility and are essential
+to the class. It is importatnt to also include method to get and set these attributes for example getPateintId(), getMetrics() and getTimestamp().
+As you may notice I tried to correctly implement a diagram that encapsulates all the essentials.

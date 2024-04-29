@@ -1,0 +1,8 @@
+My rationale for the Alert Generation System UML state diagram was to show a logical
+ diagram of the states of the Alert Generation System's lifeline. We have the first state that has a transition
+ arrow pointing towards the generated state which generates alerts. There reasoning behind why there is no terminator as alerts always are being made
+ as there are always new patients with alerting conditions that need to be catered to. The different states are simple and precise of which include 
+ genereated, sent, acknowledged and resolved. now talking about transitions. There is a transition between generated and sent to send an alert.
+ There is a transition between sent and acknowledge which acknowledges the alert, a transition between resolved and acknowledge that has the the staff treat the condition and
+ finally one between resolved and generated. This shows the process an alert goes through. Once it is resolved the alert can be closed and a new one can be made which may be for
+ a new patient or the current one. This diagram is helpful when it comes down to designing the Alert Generation System, finding any potential errors that are unexpected and using it to communicate with stakeholders.

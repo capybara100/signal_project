@@ -1,0 +1,9 @@
+The reasoning that goes behind the Data Acess Layer class diagram was to make it logical and straightforward. For the classes
+we have dataListener, DataParser, DataSourceAdapter, FileDataListener, TCPDataListener and WebSocketDataListener.
+It is valuable to have to DataListener classes to be able to receive data from different sources such as files which the FileDataListener uses, WebSocket connection or over a TCP connection.
+The DataListener is dependent on those classes that is why there is arrows pointing it. This system is all about flexibility that is why there is so many
+DateListener classes. The DataParser is dependent to the DataListener class to be able to parse raw data into the system in a way that is easy to understand and process.
+The DataSourceAdapter class is depedent to the DataParser class to be able communicate between the system and other data sources. 
+It is also important to appreciate the methods within the DataListener classes we have classes to listen to cnnection and to close them, parse data and send data.
+For attributes I shown them through the methods of DataListener and DataSourceAdapter which are connected which a boolean (it can only have two possibilities be 
+connected or not), databaseConnections as a Connection and DataStorage as a DataStorage  to store specific details of the data.

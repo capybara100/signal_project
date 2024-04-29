@@ -1,0 +1,10 @@
+In this class diagram of the Patient Identification System as a clear and easy to follow model.
+There are three classes within this UML class diagram which are IdentityManager, PatientIdentifier and
+PatientRecord. They have dependency such as PatientRecord is dependent on PatientIdentifier and IdentityManager to
+correctly create a patient's record. IdentityManager is dependent on PatientIdentifier to be able to manage the patients data.
+PatientRecord has private visibility on all its attributes which includes patientId, name, dateOfBirth, medicalHistory as they
+are relevant to class. It also has getters and setters for its attributes such as getPatientId, getName() and getDateOfBirth(). For Patientidentifier we need two methods, one to match the patient id and the other to get the patient's record.
+While for the identityManager class it has a method to handle any data discrepancies we might encounter which would be a hassle if they were not dealed with
+therefore it useful to have such a method. These classes, methods, attributes and other elements are all very important to properly visualize the 
+Patient Identification System in a neat UML class diagram. These classes that are shown are key components to the system as they are used to match patient IDs, have an understandable record of patients data
+and store this data for futher usage.

@@ -1,0 +1,5 @@
+Explanation of the parts of the code that were not tested.
+
+main.com as it's difficult to test throughly. 
+Some generators and alerts were not tested as the logic was perplexing.
+

@@ -1,37 +1,43 @@
-package data_management;
+package alerts;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
-import com.alerts.Alert;
+import com.alerts.AlertGenerator;
+import com.data_management.DataStorage;
 import com.data_management.Patient;
-import com.data_management.PatientRecord;
-import com.cardio_generator.generators.AlertGenerator;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AlertGeneratorTest {
+    private AlertGenerator alertGenerator;
+    private DataStorage dataStorage;
+
+    @BeforeEach
+    void setUp() {
+        dataStorage = new DataStorage();
+        alertGenerator = new AlertGenerator(dataStorage);
+    }
 
     @Test
     void testEvaluateData() {
-        // Set up System.out to capture the print statements
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
 
         // Create a sample patient with test data
-        List<PatientRecord> testData = new ArrayList<>();
-        testData.add(new PatientRecord(1, 120, "SystolicPressure", 1));
-        testData.add(new PatientRecord(1, 80, "DiastolicPressure", 2));
-        testData.add(new PatientRecord(1, 95, "Saturation", 3));
-        testData.add(new PatientRecord(1, 45, "ECG", 4));
-
         Patient patient = new Patient(1);
+        patient.addRecord(190, "SystolicPressure", 1700000000001L); // High systolic pressure
+        patient.addRecord(49, "HeartRate", 1700000000002L); // Low heart rate
+        patient.addRecord(85, "Saturation", 1700000000003L); // Low saturation
 
-        // Create an instance of AlertGenerator
-        AlertGenerator alertGenerator = new AlertGenerator(1);
+        // Adding ECG records to simulate a low heart rate
+        patient.addRecord(-0.5, "ECG", 1700000000004L); // Simulated ECG data
+        patient.addRecord(0.7, "ECG", 1700000002004L); // Simulated ECG data crossing zero indicating a beat (2 seconds interval)
+        patient.addRecord(-0.5, "ECG", 1700000004004L); // Simulated ECG data
+        patient.addRecord(0.8, "ECG", 1700000006004L); // Simulated ECG data crossing zero indicating a beat (2 seconds interval)
 
         // Call the evaluateData method
         alertGenerator.evaluateData(patient);
@@ -40,10 +46,15 @@ class AlertGeneratorTest {
         String output = outContent.toString();
         System.setOut(originalOut); // Reset System.out to its original state
 
+        // Print captured output for debugging
+       // System.out.println("Captured Output:");
+       // System.out.println(output);
+
         // Assert that the correct alerts are triggered
-        assertTrue(output.contains("Critical pressure detected"));
-        assertTrue(output.contains("Low blood saturation detected"));
-        assertTrue(output.contains("Abnormal heart rate detected"));
-        assertTrue(output.contains("Irregular heart beat detected"));
+        assertTrue(output.contains("triggered Systolic Pressure higher than 180"));
+        assertTrue(output.contains("triggered Abnormal Heart Rate Lower Than 50"));
+        assertTrue(output.contains("triggered Saturation level lower than 92.0%"));
     }
+
+
 }

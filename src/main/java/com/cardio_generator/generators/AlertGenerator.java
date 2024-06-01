@@ -3,34 +3,36 @@ package com.cardio_generator.generators;
 import java.util.Random;
 
 import com.cardio_generator.outputs.OutputStrategy;
+import com.data_management.Patient;
+
 /**
-* This class generates alerts for patients
-*/
+ * This class generates alerts for patients
+ */
 public class AlertGenerator implements PatientDataGenerator {
 
     public static final Random randomGenerator = new Random();
     // Changed field name to lowerCamelCase
     private boolean[] alertStates; // false = resolved, true = pressed
     /**
-    * This constructor intializes the alertStates array
-    * @param patientCount is an int of th number of patients
-    */
+     * This constructor intializes the alertStates array
+     * @param patientCount is an int of th number of patients
+     */
     public AlertGenerator(int patientCount) {
         // Changed field name to lowerCamelCase
         alertStates = new boolean[patientCount + 1];
     }
-     /**
-    * This method generates alert data for the patient using the selected ouputStrategy
-    * @param patientId is an int which is the identification of the patient of the alert
-    * @param outputStrategy is an OutputStrategy that is selected to be printed
-    */
+    /**
+     * This method generates alert data for the patient using the selected ouputStrategy
+     * @param patientId is an int which is the identification of the patient of the alert
+     * @param outputStrategy is an OutputStrategy that is selected to be printed
+     */
     @Override
     public void generate(int patientId, OutputStrategy outputStrategy) {
         try {
             // Changed to field name to lowerCamelCase
             if (alertStates[patientId]) {
                 if (randomGenerator.nextDouble() < 0.9) { // 90% chance to resolve
-                     // Changed to field name to lowerCamelCase
+                    // Changed to field name to lowerCamelCase
                     alertStates[patientId] = false;
                     // Output the alert
                     outputStrategy.output(patientId, System.currentTimeMillis(), "Alert", "resolved");
@@ -54,4 +56,6 @@ public class AlertGenerator implements PatientDataGenerator {
             e.printStackTrace();
         }
     }
+
+
 }

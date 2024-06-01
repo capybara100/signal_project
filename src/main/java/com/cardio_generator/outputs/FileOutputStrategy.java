@@ -40,7 +40,7 @@ public class FileOutputStrategy implements OutputStrategy { // Class name change
             return;
         }
         // Set the FilePath variable
-        String FilePath = file_map.computeIfAbsent(label, k -> Paths.get(baseDirectory, label + ".txt").toString()); // Changed field name to fit lowerCamelCase
+        String FilePath = fileMap.computeIfAbsent(label, k -> Paths.get(baseDirectory, label + ".txt").toString()); // Changed field name to fit lowerCamelCase
 
         // Write the data to the file
         try (PrintWriter out = new PrintWriter(

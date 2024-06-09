@@ -1,6 +1,8 @@
 package com.data_management;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.io.BufferedReader;
 import java.io.File;
@@ -47,6 +49,32 @@ public class DataReaderImplementation implements DataReader {
                 }
             }
         }
+    }
+    /**
+     * Connects to a WebSocket server at the specified URI.
+     *
+     * @param serverUri the URI of the WebSocket server
+     * @throws IOException if an I/O error occurs while connecting to the server
+     */
+    @Override
+    public void connect(URI serverUri) throws IOException {
+        try {
+            WebSocketClient client = new WebSocketClient(serverUri, new DataStorage());
+            client.connect();
+        } catch (URISyntaxException e) {
+            throw new IOException("Invalid URI", e);
+        }
+
+    }
+
+    /**
+     * Handles incoming messages from the WebSocket server.
+     *
+     * @param message the message received from the server
+     */
+    @Override
+    public void onMessage(String message) {
+
     }
 
     /**

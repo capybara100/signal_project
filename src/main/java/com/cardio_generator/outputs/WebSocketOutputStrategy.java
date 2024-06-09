@@ -3,7 +3,9 @@ package com.cardio_generator.outputs;
 import org.java_websocket.WebSocket;
 import org.java_websocket.server.WebSocketServer;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
 
 public class WebSocketOutputStrategy implements OutputStrategy {
 
@@ -13,6 +15,16 @@ public class WebSocketOutputStrategy implements OutputStrategy {
         server = new SimpleWebSocketServer(new InetSocketAddress(port));
         System.out.println("WebSocket server created on port: " + port + ", listening for connections...");
         server.start();
+    }
+    /**
+     * Method to stop the WebSocket server.
+     *
+     * @throws IOException if an I/O error occurs while stopping the server
+     * @throws InterruptedException if the thread is interrupted while sleeping
+     */
+    public void stopServer() throws IOException, InterruptedException {
+        server.stop();// Server stops
+        System.out.println("WebSocket server stopped.");
     }
 
     @Override
@@ -54,5 +66,6 @@ public class WebSocketOutputStrategy implements OutputStrategy {
         public void onStart() {
             System.out.println("Server started successfully");
         }
+
     }
 }

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
 import com.alerts.AlertGenerator;
 
 /**
@@ -14,6 +17,7 @@ import com.alerts.AlertGenerator;
  */
 public class DataStorage {
     private Map<Integer, Patient> patientMap; // Stores patient objects indexed by their unique patient ID.
+    private final ConcurrentMap<Integer, Patient> patientData = new ConcurrentHashMap<>();
 
     /**
      * Constructs a new instance of DataStorage, initializing the underlying storage
@@ -44,6 +48,7 @@ public class DataStorage {
         }
         patient.addRecord(measurementValue, recordType, timestamp);
     }
+
 
 
     /**

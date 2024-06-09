@@ -17,7 +17,8 @@ class AlertGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        dataStorage = new DataStorage();
+        DataStorage.resetInstance();
+        dataStorage = DataStorage.getInstance();
         alertGenerator = new AlertGenerator(dataStorage);
     }
 

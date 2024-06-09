@@ -17,14 +17,29 @@ import com.alerts.AlertGenerator;
  */
 public class DataStorage {
     private Map<Integer, Patient> patientMap; // Stores patient objects indexed by their unique patient ID.
-    private final ConcurrentMap<Integer, Patient> patientData = new ConcurrentHashMap<>();
 
+    // Static variable to hold the single instance of DataStorage
+    private static volatile DataStorage instance;
     /**
      * Constructs a new instance of DataStorage, initializing the underlying storage
      * structure.
      */
-    public DataStorage() {
+    private DataStorage() {
         this.patientMap = new HashMap<>();
+    }
+    // Public method to provide access to the instance
+    public static DataStorage getInstance() {
+        if (instance == null) {
+            synchronized (DataStorage.class) {
+                if (instance == null) {
+                    instance = new DataStorage();
+                }
+            }
+        }
+        return instance;
+    }
+   public static void resetInstance() {
+        instance = null;
     }
 
     /**

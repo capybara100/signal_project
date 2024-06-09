@@ -1,5 +1,6 @@
 package data_management;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import com.data_management.DataStorage;
 import com.data_management.DataReaderImplementation;
@@ -15,7 +16,10 @@ import java.util.List;
  * Unit tests for the DataReaderImplementation class.
  */
 class DataReaderTest {
-
+    @BeforeEach
+    void setUp() {
+        DataStorage.resetInstance();
+    }
     /**
      * Tests the reading of data from files and verifies the stored data.
      */
@@ -30,7 +34,7 @@ class DataReaderTest {
         Files.write(testFile1, "1,100.0,WhiteBloodCells,1714376789050\n2,200.0,RedBloodCells,1714376789051\n".getBytes());
         Files.write(testFile2, "3,300.0,WhiteBloodCells,1714376789052\n4,400.0,RedBloodCells,1714376789053\n".getBytes());
 
-        DataStorage dataStorage = new DataStorage();
+        DataStorage dataStorage =  DataStorage.getInstance();
         DataReaderImplementation reader = new DataReaderImplementation(testDataDirectory);
 
         reader.readData(dataStorage);
@@ -61,7 +65,7 @@ class DataReaderTest {
         // Prepare an empty test data directory
         Path emptyDirectory = Files.createTempDirectory("emptyDir");
 
-        DataStorage dataStorage = new DataStorage();
+        DataStorage dataStorage = DataStorage.getInstance();
         DataReaderImplementation reader = new DataReaderImplementation(emptyDirectory);
 
         reader.readData(dataStorage);
@@ -81,7 +85,7 @@ class DataReaderTest {
         // Write invalid test data to file
         Files.write(testFile, "1,0.0,WhiteBloodCells,1714376789050\n2,200.0,RedBloodCells,1714376789051\n".getBytes());
 
-        DataStorage dataStorage = new DataStorage();
+        DataStorage dataStorage =DataStorage.getInstance();
         DataReaderImplementation reader = new DataReaderImplementation(testDataDirectory);
 
         reader.readData(dataStorage);
@@ -106,7 +110,7 @@ class DataReaderTest {
         Files.write(testFile1, "1,100.0,WhiteBloodCells,1714376789050\n2,200.0,RedBloodCells,1714376789051\n".getBytes());
         Files.write(testFile2, "3,300.0,WhiteBloodCells,1714376789052\n4,400.0,RedBloodCells,1714376789053\n".getBytes());
 
-        DataStorage dataStorage = new DataStorage();
+        DataStorage dataStorage =DataStorage.getInstance();
         DataReaderImplementation reader = new DataReaderImplementation(testDataDirectory);
 
         reader.readData(dataStorage);
@@ -141,7 +145,7 @@ class DataReaderTest {
         // Write empty test data to file
         Files.write(testFile, "".getBytes());
 
-        DataStorage dataStorage = new DataStorage();
+        DataStorage dataStorage =DataStorage.getInstance();
         DataReaderImplementation reader = new DataReaderImplementation(testDataDirectory);
 
         reader.readData(dataStorage);

@@ -59,7 +59,7 @@ public class DataReaderImplementation implements DataReader {
     @Override
     public void connect(URI serverUri) throws IOException {
         try {
-            WebSocketClient client = new WebSocketClient(serverUri, new DataStorage());
+            WebSocketClient client = new WebSocketClient(serverUri, DataStorage.getInstance());
             client.connect();
         } catch (URISyntaxException e) {
             throw new IOException("Invalid URI", e);

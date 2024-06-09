@@ -3,6 +3,7 @@ package data_management;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.data_management.DataReader;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.data_management.DataStorage;
@@ -15,7 +16,10 @@ import java.util.List;
  * Unit tests for the DataStorage class.
  */
 class DataStorageTest {
-
+    @BeforeEach
+    void setUp() {
+        DataStorage.resetInstance();
+    }
     /**
      * Tests adding and retrieving records from the DataStorage.
      */
@@ -23,7 +27,7 @@ class DataStorageTest {
     void testAddAndGetRecords() {
         // Create a mock DataReader
         DataReader reader = Mockito.mock(DataReader.class);
-        DataStorage storage = new DataStorage();
+        DataStorage storage = DataStorage.getInstance();
 
         // Add test data to DataStorage
         storage.addPatientData(1, 100.0, "WhiteBloodCells", 1714376789050L);
